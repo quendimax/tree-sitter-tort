@@ -22,15 +22,18 @@ module.exports = grammar({
     ),
 
     _statement: $ => choice(
+      $.stmt_plain,
       $.stmt_translation,
       // TODO: $.stmt_stress,
       $.stmt_complex
     ),
 
+    stmt_plain: $ => $.text,
+
     stmt_translation: $ => seq(
       field('original', $.text),
       '->',
-      field('translation', $.text)
+      field('translation', optional($.text))
     ),
 
     stmt_complex: $ => seq(

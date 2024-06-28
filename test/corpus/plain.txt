@@ -1,0 +1,14 @@
+===
+plain
+===
+world
+свет # hello
+  свет #! hello
+---
+(source_file
+    (stmt_plain (text))
+    (stmt_plain (text))
+    (simple_comment)
+    (stmt_plain (text))
+    (info_comment)
+)

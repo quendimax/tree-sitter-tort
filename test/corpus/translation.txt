@@ -16,7 +16,7 @@ translation without original
  -> свет
 ---
 (source_file
-    (ERROR)
+    (stmt_plain (text))
 )
 
 
@@ -26,10 +26,7 @@ translation without translation
 world ->
 ---
 (source_file
-    (stmt_translation
-        original: (text)
-        translation: (text (MISSING _token))
-    )
+    (stmt_translation (text))
 )
 
 

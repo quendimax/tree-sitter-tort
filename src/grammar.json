@@ -74,6 +74,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "stmt_plain"
+        },
+        {
+          "type": "SYMBOL",
           "name": "stmt_translation"
         },
         {
@@ -81,6 +85,10 @@
           "name": "stmt_complex"
         }
       ]
+    },
+    "stmt_plain": {
+      "type": "SYMBOL",
+      "name": "text"
     },
     "stmt_translation": {
       "type": "SEQ",
@@ -101,8 +109,16 @@
           "type": "FIELD",
           "name": "translation",
           "content": {
-            "type": "SYMBOL",
-            "name": "text"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "text"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
           }
         }
       ]
