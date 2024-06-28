@@ -1,0 +1,164 @@
+[
+  {
+    "type": "ortho_choice",
+    "named": true,
+    "fields": {
+      "right_answer": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "strict_text",
+            "named": true
+          }
+        ]
+      },
+      "wrong_answer": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "strict_text",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "ortho_gap",
+    "named": true,
+    "fields": {
+      "answer": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "strict_text",
+            "named": true
+          }
+        ]
+      },
+      "comment": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "info_comment",
+          "named": true
+        },
+        {
+          "type": "stmt_complex",
+          "named": true
+        },
+        {
+          "type": "stmt_translation",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stmt_complex",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ortho_choice",
+          "named": true
+        },
+        {
+          "type": "ortho_gap",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "stmt_translation",
+    "named": true,
+    "fields": {
+      "original": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      },
+      "translation": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "text",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "strict_text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "text",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "info_comment",
+    "named": true
+  },
+  {
+    "type": "simple_comment",
+    "named": true
+  },
+  {
+    "type": "|",
+    "named": false
+  }
+]

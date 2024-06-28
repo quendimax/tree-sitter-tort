@@ -1,0 +1,61 @@
+===
+simple comments
+===
+#/usr/bin/env tort
+  #asldkfjlsadf   
+  # asldkfjlsadf #! 
+
+---
+(source_file
+    (simple_comment)
+    (simple_comment)
+    (simple_comment)
+)
+
+
+===
+info comment
+===
+#! Hello world!
+   #! utututu    
+   #! utututu #
+
+---
+(source_file
+    (info_comment)
+    (info_comment)
+    (info_comment)
+)
+
+
+===
+info and simple comment
+===
+#!/usr/bin/env tort
+#> Hello world!   
+#/usr/bin/env tort
+   #! utututu #
+   #    sdf   
+   #! utututu   
+---
+(source_file
+    (info_comment)
+    (simple_comment)
+    (simple_comment)
+    (info_comment)
+    (simple_comment)
+    (info_comment)
+)
+
+
+===
+info and simple comment with stmt
+===
+#!/usr/bin/env tort
+hello[]#! Hello world!
+---
+(source_file
+    (info_comment)
+    (stmt_complex (text) (ortho_gap))
+    (info_comment)
+)

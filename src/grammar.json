@@ -1,0 +1,326 @@
+{
+  "name": "tort",
+  "word": "_token",
+  "rules": {
+    "source_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_line"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_lf"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_line"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "_line": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_statement"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "info_comment"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_statement"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "info_comment"
+            }
+          ]
+        }
+      ]
+    },
+    "_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "stmt_translation"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "stmt_complex"
+        }
+      ]
+    },
+    "stmt_translation": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "original",
+          "content": {
+            "type": "SYMBOL",
+            "name": "text"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "->"
+        },
+        {
+          "type": "FIELD",
+          "name": "translation",
+          "content": {
+            "type": "SYMBOL",
+            "name": "text"
+          }
+        }
+      ]
+    },
+    "stmt_complex": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "text"
+                  },
+                  {
+                    "type": "BLANK"
+                  }
+                ]
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_orthogram"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "text"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "text": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_token"
+      }
+    },
+    "strict_text": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_strict_token"
+      }
+    },
+    "_orthogram": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "ortho_gap"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "ortho_choice"
+        }
+      ]
+    },
+    "ortho_gap": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "FIELD",
+          "name": "answer",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "strict_text"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "comment",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "text"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "ortho_choice": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "FIELD",
+          "name": "right_answer",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "strict_text"
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "|"
+              },
+              {
+                "type": "FIELD",
+                "name": "wrong_answer",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "strict_text"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "_token": {
+      "type": "PATTERN",
+      "value": "([^ #\\r\\n\\t\\p{C}\\p{Z}\\[\\]])+"
+    },
+    "_strict_token": {
+      "type": "PATTERN",
+      "value": "([^ #\\r\\n\\t\\p{C}\\p{Z}\\[\\]|:])+"
+    },
+    "info_comment": {
+      "type": "PATTERN",
+      "value": "#![^\\r\\n]*"
+    },
+    "simple_comment": {
+      "type": "PATTERN",
+      "value": "#([^!\\r\\n][^\\r\\n]*)?"
+    },
+    "_lf": {
+      "type": "PATTERN",
+      "value": "\\n|\\r|\\r\\n"
+    },
+    "_ws": {
+      "type": "PATTERN",
+      "value": "\\p{Z}+"
+    }
+  },
+  "extras": [
+    {
+      "type": "SYMBOL",
+      "name": "_ws"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "simple_comment"
+    }
+  ],
+  "conflicts": [
+    [
+      "ortho_gap",
+      "ortho_choice"
+    ]
+  ],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}

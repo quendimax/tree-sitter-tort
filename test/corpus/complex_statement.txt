@@ -1,0 +1,108 @@
+===
+complex with gap
+===
+hello[, ]wor[l]d
+---
+(source_file
+    (stmt_complex
+        (text)
+        (ortho_gap
+            answer: (strict_text)
+        )
+        (text)
+        (ortho_gap
+            answer: (strict_text)
+        )
+        (text)
+    )
+)
+
+
+===
+complex with emtpy gap
+===
+hello[], world [ ]!
+---
+(source_file
+    (stmt_complex
+        (text)
+        (ortho_gap)
+        (text)
+        (ortho_gap)
+        (text)
+    )
+)
+
+
+===
+complex with choice
+===
+hello [earth|moon|mars]
+---
+(source_file
+    (stmt_complex
+        (text)
+        (ortho_choice
+            right_answer: (strict_text)
+            wrong_answer: (strict_text)
+            wrong_answer: (strict_text)
+        )
+    )
+)
+
+
+===
+complex with variants and empty
+===
+hello [|]
+---
+(source_file
+    (stmt_complex
+        (text)
+        (ortho_choice
+            (ERROR)
+        )
+    )
+)
+
+
+===
+complex inside comment
+===
+hello [world:мир]
+---
+(source_file
+    (stmt_complex
+        (text) (ortho_gap
+            answer: (strict_text)
+            comment: (text)
+        )
+    )
+)
+
+
+===
+complex mixed
+===
+hello [world:мир][][   ][|he] [|a|b|c] #asdf #>fdsa
+---
+(source_file
+    (stmt_complex
+        (text)
+        (ortho_gap
+            answer: (strict_text)
+            comment: (text)
+        )
+        (ortho_gap)
+        (ortho_gap)
+        (ortho_choice
+            wrong_answer: (strict_text)
+        )
+        (ortho_choice
+            wrong_answer: (strict_text)
+            wrong_answer: (strict_text)
+            wrong_answer: (strict_text)
+        )
+    )
+    (simple_comment)
+)
