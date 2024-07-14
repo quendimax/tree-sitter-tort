@@ -78,6 +78,6 @@ module.exports = grammar({
 
     _lf: $ => /\n|\r|\r\n/,
 
-    _ws: $ => /\p{Z}+/
+    _ws: $ => /[\t\p{Z}]+/
   },
 });

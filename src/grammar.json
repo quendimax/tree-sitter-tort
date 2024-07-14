@@ -316,7 +316,7 @@
     },
     "_ws": {
       "type": "PATTERN",
-      "value": "\\p{Z}+"
+      "value": "[\\t\\p{Z}]+"
     }
   },
   "extras": [
